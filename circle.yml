@@ -4,11 +4,21 @@ machine:
   node:
     version: 0.10.5
   enviroment:
-    LAIKA_OPTIONS:  -t 5000
+    # LAIKA_OPTIONS:  -t 5000
 
 
 # Customize dependencies
 
 dependencies:
   pre:
-    - curl -L http://git.io/3l-rRA | /bin/sh
+    # - curl -L http://git.io/3l-rRA | /bin/sh
+  #install meteor from git
+    - git clone https://github.com/meteor/meteor.git ~/meteor
+    - export PATH=~/meteor/:$PATH
+  #
+  ##install meteorite and laika
+    - npm install -g meteorite laika
+
+test:
+  override:
+    - METEOR_PATH=~/meteor laika -t 5000
