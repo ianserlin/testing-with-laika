@@ -13,4 +13,23 @@ suite('Posts', function () {
       done();
     });
   });
+
+  test('using both client and the server', function(done, server, client) {
+    server.eval(function() {
+      Posts.find().observe({
+        added: addedNewPost
+      });
+
+      function addedNewPost(post) {
+        emit('post', post);
+      }
+    }).once('post', function(post) {
+      assert.equal(post.title, 'hello title');
+      done();
+    });
+
+    client.eval(function() {
+      Posts.insert({title: 'hello title'});
+    });
+  });;
 })
