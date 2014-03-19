@@ -5,3 +5,12 @@ build:
         - script:
             name: run laika
             code: laika
+        - script:
+            name: debug .meteor
+            code: |
+              echo "ls -l $WERCKER_ROOT/.meteor/"
+              ls -l $WERCKER_ROOT/.meteor/
+              echo "ls -ld $WERCKER_ROOT/.meteor/local/"
+              ls -ld $WERCKER_ROOT/.meteor/local/
+              echo "ls -l $WERCKER_ROOT/.meteor/local/build/programs/server/packages/deps.js.map"
+              ls -l $WERCKER_ROOT/.meteor/local/build/programs/server/packages/deps.js.map
