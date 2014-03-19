@@ -4,5 +4,5 @@ build:
     steps:
         - script:
             name: run laika
-            code: laika -R TAP
+            code: laika -R tap
         
